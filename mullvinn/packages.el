@@ -29,8 +29,11 @@
 
 ;;; Code:
 
-(defconst mullvinn.config-packages
-  '()
+(defconst mullvinn-packages
+  '(
+    hlinum
+    mac-pseudo-daemon
+  )
   "The list of Lisp packages required by the mullvinn.config layer.
 
 Each entry is either:
@@ -58,5 +61,20 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
+(defun mullvinn/init-hlinum ()
+  (use-package hlinum
+    :defer
+    :init
+    (progn
+      (require 'hlinum)
+      (hlinum-activate)))
+)
+
+(defun mullvinn/init-mac-pseudo-daemon ()
+  (use-package mac-pseudo-daemon
+    :defer
+    :init
+    (require 'mac-pseudo-daemon))
+)
 
 ;;; packages.el ends here
